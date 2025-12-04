@@ -40,6 +40,22 @@ runs:
           "comment": "Auto-approved for automation"
         }
         "@
-        Invoke-RestMethod -Uri $url -Method POST -Headers @{
-          Authorization = "Bearer ${{ inputs.token }}"
-        } -Body $body -ContentType "application/json"
+        try {
+          Invoke-RestMethod -Uri $url -Method POST -Headers @{
+            Authorization = "Bearer ${{ inputs.token }}"
+          } -Body $body -ContentType "application/json"
+          Write-Host "Deployment approved successfully"
+        }
+        catch {
+          $statusCode = $_.Exception.Response.StatusCode.value__
+          $errorMessage = $_.Exception.Message
+          
+          if ($statusCode -eq 422 -and $errorMessage -like "*No pending deployment*") {
+            Write-Host "No pending deployments found."
+            exit 0
+          }
+          else {
+            Write-Error "Failed to approve deployment: $errorMessage"
+            throw
+          }
+        }
