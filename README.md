@@ -1,8 +1,12 @@
-# Auto Approve Environment Deployment
+# Auto Approve Environment Deployments
 
-![Marketplace](https://img.shields.io/badge/GitHub%20Marketplace-Auto%20Approve%20Environment%20Deployment-brightgreen)
+![Marketplace](https://img.shields.io/badge/GitHub%20Marketplace-Auto%20Approve%20Environment%20Deployments-brightgreen)
 
 Easily automate the approval of pending deployments in GitHub Actions when using environment protection rules with multiple dependent jobs.
+
+> [!NOTE]
+> This action was forked from [paulsony13/auto-approve-environment-deployment](https://github.com/paulsony13/auto-approve-environment-deployment) to solve a couple issues that reduced its usability for the general public.
+> All credit goes to @pualsony13 who first paved this clever solution!
 
 ---
 

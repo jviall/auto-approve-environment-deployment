@@ -1,4 +1,4 @@
-name: Auto Approve Environment Deployment
+name: Auto Approve Environment Deployments
 description: Retrieve environment ID and auto-approve pending deployments in GitHub Actions.
 inputs:
   environment:
