@@ -1,5 +1,8 @@
 name: Auto Approve Environment Deployments
 description: Retrieve environment ID and auto-approve pending deployments in GitHub Actions.
+branding:
+  icon: check-circle
+  color: green
 inputs:
   environment:
     description: The name of the environment.
