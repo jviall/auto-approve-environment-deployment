@@ -30,6 +30,7 @@ runs:
             }
           }
         }
+        echo "Found environment id: $($environmentId)"
         echo "environment_id=$($environmentId)" >> $env:GITHUB_OUTPUT
 
     - name: Auto Approve Deployment
@@ -44,13 +45,15 @@ runs:
         }
         "@
         try {
-          Invoke-RestMethod -Uri $url -Method POST -Headers @{
+          $response = Invoke-RestMethod -Uri $url -Method POST -Headers @{
             Authorization = "Bearer ${{ inputs.token }}"
           } -Body $body -ContentType "application/json"
+          Write-Host "✅ Successfully approved pending deployments"
         }
         catch {
           $statusCode = $_.Exception.Response.StatusCode.value__
           if ($statusCode -eq 422) {
+            Write-Host "ℹ️ No pending deployments found to approve"
             exit 0
           }
           else {
