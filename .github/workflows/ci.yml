@@ -43,7 +43,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Attempt approval when no pending jobs exist
+      - name: Attempt approval when one pending job exists
         uses: ./
         with:
           environment: test-protected
